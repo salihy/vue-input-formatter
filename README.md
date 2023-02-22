@@ -1,5 +1,15 @@
 # Vue Input Formatter
 
+##Installation
+
+Using npm:
+
+```shell
+$ npm i vue-input-formatter
+```
+
+##Usage
+
 ```
 <script setup lang="ts">
 import VueNumberInput from "vue-input-formatter";
