@@ -1,6 +1,7 @@
 <template>
   <input
     type="string"
+    class=""
     v-model="innerStrValue"
     :placeholder="placeholder"
     @keydown="checkInput($event)"
@@ -22,15 +23,31 @@ const innerNumValue = ref<number | undefined>(props.modelValue);
 const emit = defineEmits(["update:modelValue"]);
 
 onMounted(() => {
-  innerStrValue.value = new Intl.NumberFormat("en-US", {
-    maximumFractionDigits: 2,
-  }).format(innerNumValue.value ? innerNumValue.value : 0);
+  if (
+    innerNumValue.value !== undefined &&
+    innerNumValue.value !== null &&
+    innerNumValue.value !== 0
+  ) {
+    innerStrValue.value = new Intl.NumberFormat("en-US", {
+      maximumFractionDigits: 2,
+    }).format(innerNumValue.value);
+  } else {
+    innerStrValue.value = "";
+  }
 });
 
 watch(innerNumValue, (newVal, oldVal) => {
-  innerStrValue.value = new Intl.NumberFormat("en-US", {
-    maximumFractionDigits: 2,
-  }).format(innerNumValue.value ? innerNumValue.value : 0);
+  if (
+    innerNumValue.value !== undefined &&
+    innerNumValue.value !== null &&
+    innerNumValue.value !== 0
+  ) {
+    innerStrValue.value = new Intl.NumberFormat("en-US", {
+      maximumFractionDigits: 2,
+    }).format(innerNumValue.value);
+  } else {
+    innerStrValue.value = "";
+  }
   emit("update:modelValue", innerNumValue.value);
 });
 
@@ -40,8 +57,7 @@ watch(props, () => {
 
 watch(innerStrValue, (newVal, oldVal) => {
   //emit("update:modelValue", newVal);
-  console.log(newVal, oldVal);
-  innerNumValue.value = parseLocaleNumber(newVal, "en-US");
+  if (newVal) innerNumValue.value = parseLocaleNumber(newVal, "en-US");
 });
 
 //new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 }).format(number)
@@ -65,13 +81,16 @@ function formatInput($event: KeyboardEvent) {
   ) {
     var strNum = props.modelValue?.toString();
     if ($event.key !== ".") {
-      if (innerStrValue.value.length === 0 && $event.key === "Backspace") {
-        innerStrValue.value = "";
-        innerNumValue.value = 0;
-      } else {
+      if (
+        innerNumValue.value !== undefined &&
+        innerNumValue.value !== null &&
+        innerNumValue.value !== 0
+      ) {
         innerStrValue.value = new Intl.NumberFormat("en-US", {
           maximumFractionDigits: 2,
-        }).format(innerNumValue.value ? innerNumValue.value : 0);
+        }).format(innerNumValue.value);
+      } else {
+        innerStrValue.value = "";
       }
     }
   } else {
