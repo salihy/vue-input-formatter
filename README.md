@@ -12,7 +12,7 @@ $ npm i vue-input-formatter
 
 ```
 <script setup lang="ts">
-import VueNumberInput from "vue-input-formatter";
+import { VueInputFormatter } from "vue-input-formatter";
 import { ref } from "vue";
 
 const testModel = ref<number>(0);
