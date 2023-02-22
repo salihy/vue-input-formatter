@@ -1,6 +1,6 @@
 # Vue Input Formatter
 
-##Installation
+## Installation
 
 Using npm:
 
@@ -8,7 +8,7 @@ Using npm:
 $ npm i vue-input-formatter
 ```
 
-##Usage
+## Usage
 
 ```
 <script setup lang="ts">
