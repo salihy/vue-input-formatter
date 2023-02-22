@@ -12,6 +12,11 @@ Using npm:
 $ npm i vue-input-formatter
 ```
 
+Using yarn:
+```
+$ yarn add vue-input-formatter
+```
+
 ## Usage
 
 ```
