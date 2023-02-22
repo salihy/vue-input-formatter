@@ -1,5 +1,9 @@
 # Vue Input Formatter
 
+## Demo
+
+![](https://github.com/salihy/vue-input-formatter/raw/main/screenshot.gif)
+
 ## Installation
 
 Using npm:
